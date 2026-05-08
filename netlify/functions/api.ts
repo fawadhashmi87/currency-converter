@@ -1,6 +1,6 @@
 import { Handler } from '@netlify/functions';
 
-const API_KEY = '4E0VK7BnkdeUuh1vegAt808v2IUjzUR6lxcvBMT2';
+const API_KEY = process.env['FREE_CURRENCY_API_KEY'] || '4E0VK7BnkdeUuh1vegAt808v2IUjzUR6lxcvBMT2';
 const BASE_URL = 'https://api.freecurrencyapi.com/v1';
 
 export const handler: Handler = async (event) => {
