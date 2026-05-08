@@ -1,0 +1,40 @@
+<div class="glass-card history-card">
+  <div class="history-header">
+    <h2>Conversion History</h2>
+    @if (currencyService.history().length > 0) {
+      <button mat-icon-button color="warn" (click)="clearHistory()" aria-label="Clear history" class="clear-btn">
+        <mat-icon>delete_sweep</mat-icon>
+      </button>
+    }
+  </div>
+
+  @if (currencyService.history().length === 0) {
+    <div class="empty-state">
+      <mat-icon>history</mat-icon>
+      <p>No conversions yet.</p>
+    </div>
+  } @else {
+    <div class="history-list">
+      @for (item of currencyService.history(); track item.date) {
+        <div class="history-item">
+          <div class="history-main">
+            <span class="history-amount">{{ item.amount | number:'1.2-2' }} {{ item.from }}</span>
+            <mat-icon class="history-arrow">arrow_right_alt</mat-icon>
+            <span class="history-converted">{{ item.convertedAmount | number:'1.2-2' }} {{ item.to }}</span>
+          </div>
+          <div class="history-meta">
+            <span class="history-date">
+              <mat-icon class="small-icon">schedule</mat-icon>
+              {{ item.date | date:'medium' }}
+            </span>
+            @if (item.historicalDateUsed) {
+              <span class="historical-badge">
+                Historical Rate: {{ item.historicalDateUsed }}
+              </span>
+            }
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

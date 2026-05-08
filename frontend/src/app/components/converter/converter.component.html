@@ -1,0 +1,89 @@
+<div class="glass-card converter-card">
+  <h2>Currency Converter</h2>
+  
+  @if (isLoadingCurrencies()) {
+    <div class="loader-container">
+      <mat-spinner diameter="40"></mat-spinner>
+      <p>Loading Currencies...</p>
+    </div>
+  } @else {
+    <div class="converter-form">
+      <div class="form-inputs">
+        <div class="amount-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Amount</mat-label>
+            <input matInput type="text" [ngModel]="amountDisplay" (ngModelChange)="onAmountChange($event)" placeholder="Enter amount">
+          </mat-form-field>
+        </div>
+
+        <div class="currency-row">
+          <mat-form-field appearance="fill" class="currency-select">
+            <mat-label>From</mat-label>
+            <mat-select [(ngModel)]="fromCurrency">
+              @for (currency of currencies(); track currency) {
+                <mat-option [value]="currency">{{ currency }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-icon-button class="swap-btn" (click)="swapCurrencies()" aria-label="Swap currencies">
+            <mat-icon>swap_horiz</mat-icon>
+          </button>
+
+          <mat-form-field appearance="fill" class="currency-select">
+            <mat-label>To</mat-label>
+            <mat-select [(ngModel)]="toCurrency">
+              @for (currency of currencies(); track currency) {
+                <mat-option [value]="currency">{{ currency }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="date-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Historical Date (Optional)</mat-label>
+            <input matInput [matDatepicker]="picker" [max]="maxDate" [(ngModel)]="selectedDate" placeholder="Choose a date">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <button mat-raised-button class="premium-btn convert-btn" (click)="convert()" [disabled]="isConverting()">
+        @if (isConverting()) {
+          <mat-spinner diameter="24" color="accent" class="inline-spinner"></mat-spinner>
+          Converting...
+        } @else {
+          Convert
+        }
+      </button>
+
+      @if (error()) {
+        <div class="error-message">
+          <mat-icon>error_outline</mat-icon>
+          <span>{{ error() }}</span>
+        </div>
+      }
+
+      @if (result()) {
+        <div class="result-container animate-in">
+          <div class="result-amount">
+            <span class="from-amount">{{ result().amount | number:'1.2-2' }} {{ result().from }} =</span>
+            <h3 class="to-amount">{{ result().convertedAmount | number:'1.2-2' }} <span class="currency-code">{{ result().to }}</span></h3>
+          </div>
+          <div class="rate-info">
+            <p>1 {{ result().from }} = {{ result().rate | number:'1.4-6' }} {{ result().to }}</p>
+            <p class="date-info">
+              @if (result().date !== 'latest') {
+                Historical Rate from {{ result().date }}
+              } @else {
+                Latest Rate
+              }
+            </p>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

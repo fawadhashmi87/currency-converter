@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.angular/
+.next/
+*.log
+.env
+node.zip
+node-v20.12.2-win-x64/
+.DS_Store
+backend/dist/
+backend/node_modules/
+frontend/dist/
+frontend/node_modules/

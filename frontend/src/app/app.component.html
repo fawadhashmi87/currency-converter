@@ -1,0 +1,17 @@
+<main class="app-container">
+  <header class="app-header">
+    <h1>Global Currency Converter</h1>
+    <p>Convert currencies seamlessly with real-time and historical rates.</p>
+  </header>
+  
+  <div class="content-wrapper">
+    <app-converter></app-converter>
+    <app-history></app-history>
+  </div>
+
+  @if (showScrollTop()) {
+    <button mat-fab class="scroll-top-btn" (click)="scrollToTop()" aria-label="Scroll to top">
+      <mat-icon>arrow_upward</mat-icon>
+    </button>
+  }
+</main>
