@@ -14,7 +14,9 @@ export interface ConversionHistory {
   providedIn: 'root'
 })
 export class CurrencyService {
-  private readonly apiUrl = 'http://localhost:3000/api/currency';
+  private readonly apiUrl = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000/api/currency' 
+    : '/api/currency';
   
   // Using Angular 19 signals for state management
   private historySignal = signal<ConversionHistory[]>(this.loadHistory());
