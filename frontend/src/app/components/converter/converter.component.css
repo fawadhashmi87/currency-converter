@@ -9,14 +9,14 @@
 
 h2 {
   text-align: center;
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.6rem;
   flex-shrink: 0;
 }
 
 .converter-form {
-  overflow-y: auto;
-  padding-right: 0.5rem;
+  overflow-y: hidden;
+  padding-right: 0;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -56,9 +56,11 @@ h2 {
 }
 
 .convert-btn {
-  margin-top: 0;
-  height: 44px;
-  font-size: 1.1rem;
+  margin-top: -0.8rem;
+  height: 64px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
 }
 
 .inline-spinner {
@@ -79,8 +81,8 @@ h2 {
 }
 
 .result-container {
-  margin-top: 1.25rem;
-  padding: 1rem;
+  margin-top: 0.75rem;
+  padding: 0.75rem;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -97,14 +99,14 @@ h2 {
 }
 
 .from-amount {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--text-muted);
   display: block;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .to-amount {
-  font-size: 2.5rem;
+  font-size: 2.1rem;
   margin: 0;
   background: linear-gradient(to right, #60a5fa, #c084fc);
   -webkit-background-clip: text;
@@ -112,16 +114,16 @@ h2 {
 }
 
 .currency-code {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   -webkit-text-fill-color: var(--text-light);
 }
 
 .rate-info {
-  margin-top: 1rem;
-  padding-top: 1rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 .date-info {

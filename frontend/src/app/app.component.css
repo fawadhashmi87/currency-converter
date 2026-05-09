@@ -59,13 +59,15 @@ app-converter, app-history {
   .app-container {
     height: 100vh;
     overflow: hidden;
+    padding: 1.5rem;
   }
   
   .content-wrapper {
     grid-template-columns: 1fr 1fr;
     gap: 3rem;
     height: 100%;
-    overflow: hidden;
+    padding: 10px; /* Room for card hover translateY and shadow */
+    overflow: visible; /* Allow cards to move slightly outside the grid area on hover */
   }
 }
 
