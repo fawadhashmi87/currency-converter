@@ -176,7 +176,9 @@ h2 {
   }
 
   .convert-btn {
-    margin-top: auto;
+    margin-top: 1rem;
+    height: 52px;
+    font-size: 1.1rem;
   }
 
   .mat-mdc-form-field {
