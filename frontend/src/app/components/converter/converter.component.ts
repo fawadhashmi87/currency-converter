@@ -10,6 +10,31 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { CurrencyService } from '../../services/currency.service';
+import { DateAdapter, MAT_DATE_FORMATS, NativeDateAdapter } from '@angular/material/core';
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: { month: 'short', year: 'numeric', day: 'numeric' },
+  },
+  display: {
+    dateInput: { month: 'short', year: 'numeric', day: 'numeric' },
+    monthYearLabel: { month: 'short', year: 'numeric' },
+    dateA11yLabel: { month: 'long', year: 'numeric', day: 'numeric' },
+    monthYearA11yLabel: { month: 'long', year: 'numeric' },
+  },
+};
+
+export class CustomDateAdapter extends NativeDateAdapter {
+  override format(date: Date, displayFormat: Object): string {
+    if (displayFormat === MY_FORMATS.display.dateInput) {
+      const day = date.getDate().toString().padStart(2, '0');
+      const month = date.toLocaleString('default', { month: 'short' });
+      const year = date.getFullYear();
+      return `${day}/${month}/${year}`;
+    }
+    return super.format(date, displayFormat);
+  }
+}
 
 @Component({
   selector: 'app-converter',
@@ -18,6 +43,10 @@ import { CurrencyService } from '../../services/currency.service';
     CommonModule, FormsModule, MatCardModule, MatSelectModule, 
     MatInputModule, MatDatepickerModule, MatNativeDateModule, 
     MatButtonModule, MatProgressSpinnerModule, MatIconModule
+  ],
+  providers: [
+    { provide: DateAdapter, useClass: CustomDateAdapter },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS }
   ],
   templateUrl: './converter.component.html',
   styleUrl: './converter.component.css'
