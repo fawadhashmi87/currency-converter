@@ -76,7 +76,7 @@
             <p>1 {{ result().from }} = {{ result().rate | number:'1.4-6' }} {{ result().to }}</p>
             <p class="date-info">
               @if (result().date !== 'latest') {
-                Historical Rate from {{ result().date }}
+                Historical Rate from {{ result().date | date:'dd/MMM/yyyy' }}
               } @else {
                 Latest Rate
               }

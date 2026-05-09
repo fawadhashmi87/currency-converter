@@ -25,11 +25,11 @@
           <div class="history-meta">
             <span class="history-date">
               <mat-icon class="small-icon">schedule</mat-icon>
-              {{ item.date | date:'medium' }}
+              {{ item.date | date:'dd/MMM/yyyy' }}
             </span>
             @if (item.historicalDateUsed) {
               <span class="historical-badge">
-                Historical Rate: {{ item.historicalDateUsed }}
+                Historical Rate: {{ item.historicalDateUsed | date:'dd/MMM/yyyy' }}
               </span>
             }
           </div>
